@@ -27,7 +27,7 @@ Follow these steps to set up and run the API:
 
 - **1. Clone the repository**: git clone <repository_url>
 
-- **2. Install dependencies**: run : /dockerrun.sh
+- **2. Install dependencies**: /dockerrun.sh
 
 ### Configuration
 
