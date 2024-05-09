@@ -1,0 +1,16 @@
+{
+    "main": {
+        "port": "8000",
+        "log_type": "FILE",
+        "log_file": "tmp/console.log",
+        "log_level": "info",
+        "redis": "disabled",
+        "mongodb": "enabled"
+    },
+    "redis": {
+        "address": "localhost:6379",
+        "database": 2,
+        "password": ""
+    },
+    "mongodb_uri": "mongodb://mongodb:27017"
+}

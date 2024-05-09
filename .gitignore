@@ -1,0 +1,4 @@
+tmp/*
+config/config.json
+.vscode/launch.json
+upload_file/*

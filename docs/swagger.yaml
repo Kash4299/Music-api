@@ -1,0 +1,347 @@
+basePath: /v1
+definitions:
+  model.Playlist:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      playback_mode:
+        description: '''priority'' or ''random'''
+        type: string
+      track_ids:
+        items:
+          $ref: '#/definitions/model.TrackIds'
+        type: array
+    type: object
+  model.PlaylistRequest:
+    properties:
+      name:
+        type: string
+      playback_mode:
+        type: string
+      track_ids:
+        items:
+          $ref: '#/definitions/model.TrackIds'
+        type: array
+    type: object
+  model.Track:
+    properties:
+      album:
+        type: string
+      artist:
+        type: string
+      duration:
+        type: number
+      genre:
+        type: string
+      id:
+        type: string
+      mp3_file:
+        type: string
+      release_year:
+        type: integer
+      title:
+        type: string
+    type: object
+  model.TrackIds:
+    properties:
+      priority:
+        type: integer
+      track_id:
+        type: string
+    type: object
+  model.TrackRequest:
+    properties:
+      album:
+        type: string
+      artist:
+        type: string
+      duration:
+        type: number
+      genre:
+        type: string
+      release_year:
+        type: integer
+      title:
+        type: string
+    type: object
+host: localhost:8000
+info:
+  contact: {}
+  description: This is a sample music API.
+  license:
+    name: hobaduy
+  title: Music API
+  version: "1.0"
+paths:
+  /playlist:
+    get:
+      consumes:
+      - application/json
+      description: Get playlists
+      operationId: get-playlist
+      parameters:
+      - description: name
+        in: query
+        name: name
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Playlist'
+      summary: Get playlists
+      tags:
+      - playlist
+    post:
+      consumes:
+      - application/json
+      description: Post playlist
+      operationId: post-playlist
+      parameters:
+      - description: playlist
+        in: body
+        name: playlist
+        required: true
+        schema:
+          $ref: '#/definitions/model.PlaylistRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Playlist'
+      summary: Post playlist
+      tags:
+      - playlist
+  /playlist/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete playlist by id
+      operationId: Delete-playlist-id
+      parameters:
+      - description: Playlist ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Playlist'
+      summary: Delete playlist by id
+      tags:
+      - playlist
+    get:
+      consumes:
+      - application/json
+      description: Get playlist by id
+      operationId: get-playlist-id
+      parameters:
+      - description: Playlist ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Playlist'
+      summary: Get playlist by id
+      tags:
+      - playlist
+    put:
+      consumes:
+      - application/json
+      description: Put playlist by id
+      operationId: put-playlist
+      parameters:
+      - description: Playlist ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: playlist
+        in: body
+        name: playlist
+        required: true
+        schema:
+          $ref: '#/definitions/model.PlaylistRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Playlist'
+      summary: Put playlist by id
+      tags:
+      - playlist
+  /track:
+    get:
+      consumes:
+      - application/json
+      description: Get tracks
+      operationId: get-track
+      parameters:
+      - description: title
+        in: query
+        name: title
+        type: string
+      - description: artist
+        in: query
+        name: artist
+        type: string
+      - description: album
+        in: query
+        name: album
+        type: string
+      - description: genre
+        in: query
+        name: genre
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Track'
+      summary: Get tracks
+      tags:
+      - track
+    post:
+      consumes:
+      - application/json
+      description: Post tracks
+      operationId: post-track
+      parameters:
+      - description: track
+        in: body
+        name: track
+        required: true
+        schema:
+          $ref: '#/definitions/model.TrackRequest'
+      - description: mp3_file
+        in: formData
+        name: mp3_file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Track'
+      summary: Post tracks
+      tags:
+      - track
+  /track/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete track by id
+      operationId: Delete-track-id
+      parameters:
+      - description: Track ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Track'
+      summary: Delete track by id
+      tags:
+      - track
+    get:
+      consumes:
+      - application/json
+      description: Get track by id
+      operationId: get-track-id
+      parameters:
+      - description: Track ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Track'
+      summary: Get track by id
+      tags:
+      - track
+    put:
+      consumes:
+      - application/json
+      description: Put track by id
+      operationId: put-track
+      parameters:
+      - description: Track ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: track
+        in: body
+        name: track
+        required: true
+        schema:
+          $ref: '#/definitions/model.TrackRequest'
+      - description: mp3_file
+        in: formData
+        name: mp3_file
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Track'
+      summary: Put track by id
+      tags:
+      - track
+  /track/{id}/download:
+    get:
+      consumes:
+      - application/json
+      description: download track by id
+      operationId: download-track-id
+      parameters:
+      - description: Track ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Track'
+      summary: download track by id
+      tags:
+      - track
+swagger: "2.0"
