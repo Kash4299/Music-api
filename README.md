@@ -27,13 +27,17 @@ Follow these steps to set up and run the API:
 
 - **1. Clone the repository**: git clone <repository_url>
 
-- **2. Install dependencies**: /dockerrun.sh
+- **2. Install dependencies**: run : /dockerrun.sh
 
 ### Configuration
 
 1. System Configuration:
 
-- Create file config.json from config.json.example at folder config of reposity.
+- Create file 'config.json' from 'config.json.example' in folder config.
+
+2. Mongodb Configuration:
+
+- If you want to use MongoDB Atlas instead of the system's MongoDB, you can replace the 'mongodb_uri' in the file 'config.json' with your MongoDB URI from MongoDB Atlas
 
 ### Running the API
 
